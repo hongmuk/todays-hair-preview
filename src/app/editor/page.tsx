@@ -18,7 +18,7 @@ export default function EditorPage() {
 
   const handlePreview = () => {
     setStatus('confirmed');
-    router.push('/confirm/demo');
+    router.push('/confirm');
   };
 
   return (

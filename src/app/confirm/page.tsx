@@ -11,12 +11,11 @@ import { CheckCircle2, ArrowLeft, Download, Share2 } from 'lucide-react';
 export default function ConfirmPage() {
   const router = useRouter();
   const { faceTexture } = useScanStore();
-  const { confirmSession, sessionId } = useSessionStore();
+  const { confirmSession } = useSessionStore();
   const [isConfirmed, setIsConfirmed] = useState(false);
 
-  // Use placeholder images for demo
-  const beforeImage = faceTexture || '/placeholder-before.png';
-  const afterImage = faceTexture || '/placeholder-after.png';
+  const beforeImage = faceTexture;
+  const afterImage = faceTexture;
 
   const handleConfirm = () => {
     confirmSession();
@@ -65,7 +64,6 @@ export default function ConfirmPage() {
         </div>
       </div>
 
-      {/* Comparison */}
       <div className="grid md:grid-cols-2 gap-6">
         <Card>
           <CardHeader>
@@ -73,7 +71,7 @@ export default function ConfirmPage() {
           </CardHeader>
           <CardContent>
             <div className="aspect-square bg-muted rounded-lg flex items-center justify-center">
-              {beforeImage.startsWith('data:') ? (
+              {beforeImage ? (
                 <img src={beforeImage} alt="Before" className="w-full h-full object-cover rounded-lg" />
               ) : (
                 <div className="text-muted-foreground text-center p-8">
@@ -91,7 +89,7 @@ export default function ConfirmPage() {
           </CardHeader>
           <CardContent>
             <div className="aspect-square bg-muted rounded-lg flex items-center justify-center">
-              {afterImage.startsWith('data:') ? (
+              {afterImage ? (
                 <img src={afterImage} alt="After" className="w-full h-full object-cover rounded-lg" />
               ) : (
                 <div className="text-muted-foreground text-center p-8">
@@ -104,7 +102,6 @@ export default function ConfirmPage() {
         </Card>
       </div>
 
-      {/* Confirmation */}
       <Card>
         <CardContent className="pt-6">
           <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
