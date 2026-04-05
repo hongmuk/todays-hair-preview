@@ -1,65 +1,100 @@
-import Image from "next/image";
+'use client';
 
-export default function Home() {
+import Link from 'next/link';
+import { Button } from '@/components/ui/button';
+import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/components/ui/card';
+import { ScanFace, Palette, CheckCircle, ArrowRight, Scissors } from 'lucide-react';
+
+export default function HomePage() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+    <div className="max-w-5xl mx-auto px-4 py-12">
+      {/* Hero */}
+      <section className="text-center space-y-6 mb-16">
+        <div className="inline-flex items-center gap-2 px-4 py-2 bg-primary/10 rounded-full text-primary text-sm font-medium">
+          <Scissors className="w-4 h-4" />
+          MVP Demo
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+        <h1 className="text-4xl sm:text-5xl font-bold tracking-tight">
+          오늘의 헤어 엿보기
+        </h1>
+        <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+          첫 가위질 전, 디자이너와 고객이 함께 만드는
+          <br className="hidden sm:block" />
+          시각적 헤어스타일 프리뷰
+        </p>
+        <div className="flex gap-4 justify-center pt-4">
+          <Button size="lg" render={<Link href="/scan" />} className="gap-2">
+            시작하기 <ArrowRight className="w-5 h-5" />
+          </Button>
+          <Button size="lg" variant="outline" render={<Link href="/editor" />}>
+            에디터 바로가기
+          </Button>
         </div>
-      </main>
+      </section>
+
+      {/* How it works */}
+      <section className="mb-16">
+        <h2 className="text-2xl font-bold text-center mb-8">어떻게 작동하나요?</h2>
+        <div className="grid md:grid-cols-3 gap-6">
+          <Card>
+            <CardHeader>
+              <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-2">
+                <ScanFace className="w-6 h-6 text-primary" />
+              </div>
+              <CardTitle>1. 얼굴 스캔</CardTitle>
+              <CardDescription>
+                스마트폰이나 태블릿 카메라로 고객의 얼굴을 스캔하여 3D 디지털 아바타를 생성합니다.
+              </CardDescription>
+            </CardHeader>
+          </Card>
+
+          <Card>
+            <CardHeader>
+              <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-2">
+                <Palette className="w-6 h-6 text-primary" />
+              </div>
+              <CardTitle>2. 스타일 편집</CardTitle>
+              <CardDescription>
+                디자이너가 슬라이더로 페이드 높이, 길이, 볼륨 등을 실시간 조절하며 최적의 스타일을 찾습니다.
+              </CardDescription>
+            </CardHeader>
+          </Card>
+
+          <Card>
+            <CardHeader>
+              <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-2">
+                <CheckCircle className="w-6 h-6 text-primary" />
+              </div>
+              <CardTitle>3. 시각적 확인</CardTitle>
+              <CardDescription>
+                Before/After를 나란히 비교하고, 양측이 합의한 후 시술을 시작합니다.
+              </CardDescription>
+            </CardHeader>
+          </Card>
+        </div>
+      </section>
+
+      {/* Features */}
+      <section>
+        <h2 className="text-2xl font-bold text-center mb-8">주요 기능</h2>
+        <div className="grid sm:grid-cols-2 gap-4">
+          {[
+            { title: '대화형 리터칭', desc: '슬라이더로 실시간 헤어스타일 수정' },
+            { title: '테이퍼링 & 트리밍', desc: '페이드 높이 조절, 숱치기 시뮬레이션' },
+            { title: '길이 & 볼륨 조절', desc: '앞머리, 옆머리, 윗머리 길이 개별 조절' },
+            { title: '6가지 베이스 스타일', desc: '크루컷, 페이드 언더컷, 포마드 등' },
+            { title: 'Before/After 비교', desc: '시술 전후 나란히 비교 확인' },
+            { title: '관리자 대시보드', desc: '회원 관리, 사용 통계, 세션 이력' },
+          ].map((feature) => (
+            <Card key={feature.title}>
+              <CardContent className="pt-6">
+                <h3 className="font-semibold">{feature.title}</h3>
+                <p className="text-sm text-muted-foreground mt-1">{feature.desc}</p>
+              </CardContent>
+            </Card>
+          ))}
+        </div>
+      </section>
     </div>
   );
 }
